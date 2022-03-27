@@ -4,7 +4,7 @@ game.Players.LocalPlayer.PlayerGui.CharacterSelection.Character.Value = "Chara"
 
 wait(1)
 
-game.Players.LocalPlayer.Character.Head:WaitForChild("HealthBar"):Destroy()
+game.Players.LocalPlayer.Character:WaitForChild("Head"):WaitForChild("HealthBar"):Destroy()
 game.Players.LocalPlayer.Backpack:WaitForChild("Main").CharaMoves.Animations.Walk.AnimationId = "rbxassetid://4370512420"
 game.Players.LocalPlayer.Backpack:WaitForChild("Main").CharaMoves.Animations.Idle.AnimationId = "rbxassetid://4900761581"
 game.Players.LocalPlayer.Backpack:WaitForChild("Main").CharaMoves.Animations.Run.AnimationId = "rbxassetid://4576074471"
