@@ -19,3 +19,11 @@ game.Players.LocalPlayer.Character.Head.Voice.SoundId = "rbxassetid://6656148225
 game.Players.LocalPlayer.Character.HeartLocket:Destroy()
 game.Players.LocalPlayer.Character.LockOn:Destroy()
 game.Players.LocalPlayer.Character.HateArm:Destroy()
+local bypass = Instance.new("BoolValue")
+bypass.Name = "Battling"
+bypass.Parent = game.Players.LocalPlayer.Character
+game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+        game.Players.LocalPlayer.Character.Humanoid.Health = 1
+    end
+end)
