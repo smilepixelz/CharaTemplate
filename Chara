@@ -27,3 +27,115 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("Health"):C
         game.Players.LocalPlayer.Character.Humanoid.Health = 1
     end
 end)
+
+local XLib = {
+    ["Functions"] = {
+        Chat = function(Cht)
+            local A_1 = 
+            {
+                [1] = getrenv()._G.Pass, 
+                [2] = "Chatted", 
+                [3] = "[Legless]\n"..cht,
+                [4] = Color3.fromRGB(255, 255, 255)
+            }
+            local Event = game:GetService("ReplicatedStorage").Remotes.Events
+            Event:FireServer(A_1)
+        end,
+        Shake = function(Preset)
+            Preset = Preset or "Explosion"
+            local CameraShaker = require(game.ReplicatedStorage.ClientModules.CameraShaker)
+
+            local camera = game.Workspace.CurrentCamera
+            
+            local camShake = CameraShaker.new(Enum.RenderPriority.Camera.Value, function(shakeCf)
+            	camera.CFrame = camera.CFrame * shakeCf
+            end)
+            
+            camShake:Start()
+            
+            camShake:Shake(CameraShaker.Presets[Preset])
+        end,
+        Damage = function(knockback, dmg, hiteffect, hittime, type)
+            hiteffect = hiteffect or "BladeHitEffect"
+        	local args = {
+                [1] = getrenv()._G.Pass,
+                [2] = game:GetService("Players").LocalPlayer.Backpack.Main.LockOnScript.LockOn.Value,
+                [3] = {
+                    ["HitTime"] = hittime, 
+                    ["Type"] = type, 
+                    ["HitEffect"] = hiteffect, 
+                    ["CombatInv"] = true,
+                    ["HurtAnimation"] = game:GetService("ReplicatedStorage").Animations.HurtAnimations.Hurt1, 
+                    ["Velocity"] = knockback, 
+                    ["Sound"] = game:GetService("ReplicatedStorage").Sounds.Punch,
+                    ["Damage"] = dmg,
+                    ["SpecialKey"] = "91203"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.Damage:InvokeServer(unpack(args))
+        end
+    };
+}
+
+game.Players.LocalPlayer.Chatted:Connect(function(cht)
+    if cht ~= "/console" then
+        local A_1 = 
+        {
+            [1] = getrenv()._G.Pass, 
+            [2] = "Chatted", 
+            [3] = "[Legless]\n"..cht,
+            [4] = Color3.fromRGB(255, 255, 255)
+        }
+        local Event = game:GetService("ReplicatedStorage").Remotes.Events
+        Event:FireServer(A_1)
+    end
+end)
+
+spawn(function()
+    repeat wait()
+        for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+            if v.Name == 'DrainStamina' or v.Name == 'DrainSprint' or v.Name == 'Hit' or v.Name == 'Hitt' or v.Name == 'Grounded' or v.Name == 'StayGrounded' or v.Name == 'KnockBack' or v.Name == 'Walled' then
+                v:Destroy()
+            end
+        end
+    until false
+end)
+
+local ya = getrawmetatable(game)
+local mum = ya.__namecall
+setreadonly(ya, false)
+ya.__namecall =
+    newcclosure(
+    function(name, ...)
+        local tabs = {...}
+        if getnamecallmethod() == "InvokeServer" and tostring(name) == "Damage" then
+            if tabs[3]["Type"] == "Knockback" and tabs[3]["SpecialKey"] ~= "91203" then 
+                tabs[3]["Velocity"] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 175 + Vector3.new(0, 30, 0) 
+                tabs[3]["Damage"] = 40 
+                tabs[3]["HitEffect"] = "HeavyHitEffect"
+            elseif tabs[3]["Type"] == "Normal" and tabs[3]["SpecialKey"] ~= "91203" then
+                tabs[3]["Damage"] = 10
+                tabs[3]["HitEffect"] = "BladeHitEffect"
+            end
+        end
+        return mum(name, unpack(tabs))
+    end
+)
+
+setreadonly(ya, true)
+
+local Mouse = game.Players.LocalPlayer:GetMouse()
+
+Mouse.KeyDown:Connect(function(key)
+    if key == "r" then 
+        function getlockchar()
+            local char = game.Players.LocalPlayer.Backpack.Main.LockOnScript.LockOn.Value
+            return char
+        end
+        XLib["Functions"].Shake("Explosion")
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getlockchar().HumanoidRootPart.CFrame * CFrame.new(0,0,-3)
+    end
+end)
+
+return XLib
