@@ -1,5 +1,5 @@
 game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
-game.ReplicatedStorage.Remotes.Functions:InvokeServer({getrenv()._G.Pass,"ChangeSetting","MorphEnabled",false})
+game.ReplicatedStorage.Remotes.Functions:InvokeServer({getrenv()._G.Pass,"ChangeSetting","MorphEnabled",true})
 game.Players.LocalPlayer.PlayerGui.CharacterSelection.Character.Value = "Chara"
 
 wait(1)
@@ -35,7 +35,7 @@ local XLib = {
             {
                 [1] = getrenv()._G.Pass, 
                 [2] = "Chatted", 
-                [3] = "[Legless]\n"..cht,
+                [3] = "[Finale]\n"..cht,
                 [4] = Color3.fromRGB(255, 255, 255)
             }
             local Event = game:GetService("ReplicatedStorage").Remotes.Events
@@ -124,6 +124,21 @@ ya.__namecall =
 )
 
 setreadonly(ya, true)
+
+_G.hidechat = true
+local mt = getrawmetatable(game)
+    local backup = mt.__namecall
+    if setreadonly then setreadonly(mt, false) else make_writeable(mt, true) end
+    
+    mt.__namecall = newcclosure(function(...)
+        local method = getnamecallmethod()
+        local args = {...}
+
+        if tostring(args[1]) == 'SayMessageRequest' and _G.hidechat then
+        return
+        end
+        return backup(...)
+    end)
 
 local Mouse = game.Players.LocalPlayer:GetMouse()
 
