@@ -84,7 +84,7 @@ game.Players.LocalPlayer.Chatted:Connect(function(cht)
         {
             [1] = getrenv()._G.Pass, 
             [2] = "Chatted", 
-            [3] = "[Legless]\n"..cht,
+            [3] = "[Finale]\n"..cht,
             [4] = Color3.fromRGB(255, 255, 255)
         }
         local Event = game:GetService("ReplicatedStorage").Remotes.Events
