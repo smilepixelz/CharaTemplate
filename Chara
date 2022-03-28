@@ -28,8 +28,6 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("Health"):C
     end
 end)
 
-repeat wait until game.Players.LocalPlayer.Character
-
 local XLib = {
     ["Functions"] = {
         Chat = function(Cht)
@@ -79,6 +77,10 @@ local XLib = {
         end
     };
 }
+
+return XLib
+
+repeat wait until game.Players.LocalPlayer.Character
 
 game.Players.LocalPlayer.Chatted:Connect(function(cht)
     if cht ~= "/console" then
@@ -154,5 +156,3 @@ Mouse.KeyDown:Connect(function(key)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getlockchar().HumanoidRootPart.CFrame * CFrame.new(0,0,-3)
     end
 end)
-
-return XLib
