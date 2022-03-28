@@ -28,6 +28,8 @@ game.Players.LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("Health"):C
     end
 end)
 
+repeat wait until game.Players.LocalPlayer.Character
+
 local XLib = {
     ["Functions"] = {
         Chat = function(Cht)
