@@ -80,7 +80,7 @@ local XLib = {
 
 return XLib
 
-repeat wait until game.Players.LocalPlayer.Character
+repeat wait() until game.Players.LocalPlayer.Character
 
 game.Players.LocalPlayer.Chatted:Connect(function(cht)
     if cht ~= "/console" then
