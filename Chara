@@ -150,8 +150,10 @@ Mouse.KeyDown:Connect(function(key)
             local char = game.Players.LocalPlayer.Backpack.Main.LockOnScript.LockOn.Value
             return char
         end
-        XLib["Functions"].Shake("Explosion")
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getlockchar().HumanoidRootPart.CFrame * CFrame.new(0,0,-3)
+        if getlockchar() ~= nil then 
+            XLib["Functions"].Shake("Explosion")
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getlockchar().HumanoidRootPart.CFrame * CFrame.new(0,0,-3)
+        end
     end
 end)
 
