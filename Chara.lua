@@ -195,11 +195,11 @@ function AddAura()
                 Z.P = 35000
                 Z.D = 1000
                 Z.Parent = C 
-                Z.CFrame = Part.CFrame
+                Z.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                 spawn(function()
                     while wait() do 
                         E.Position = Part.Position
-                        Z.CFrame = Part.CFrame
+                        Z.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                     end
                 end)
             end
