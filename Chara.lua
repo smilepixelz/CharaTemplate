@@ -180,7 +180,7 @@ function AddAura()
             print(C.Name)
             if C.Name == "MultiSpear" then
                 Rad = Rad + 2
-                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(Rad/2,Rad/2, Rad) * CFrame.lookAt(Part.Position,  game.Players.LocalPlayer.Character.HumanoidRootPart.Position) Weld.Name = "Weld"
+                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Massless = true Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(Rad/2,Rad/2, Rad) * CFrame.lookAt(Part.Position,  game.Players.LocalPlayer.Character.HumanoidRootPart.Position) Weld.Name = "Weld"
                 C:WaitForChild("NotTouched"):Destroy()
                 C:WaitForChild("LocalScript"):Destroy()
                 C:WaitForChild("ParticleEmitter"):Destroy()
