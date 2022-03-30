@@ -227,7 +227,7 @@ AddAura()
 
 spawn(function()
     while wait() do 
-        if #game.Players.LocalPlayer.Character.Attacks == 0 then 
+        if #game.Players.LocalPlayer.Character.Attacks:GetChildren() == 0 then 
             AddAura() 
         end
     end
