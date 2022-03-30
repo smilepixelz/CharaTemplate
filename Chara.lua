@@ -9,6 +9,7 @@ game.Players.LocalPlayer.Character.Head:WaitForChild("HealthBar").Frame.StaminaB
 game.Players.LocalPlayer.Character.Head:WaitForChild("HealthBar").Frame.BackHealth:Destroy()
 game.Players.LocalPlayer.Character.Head:WaitForChild("HealthBar").Frame.Health:Destroy()
 wait(2)
+game.Workspace.ServerEffects.ServerCooldown:Destroy()
 game:GetService("Players").LocalPlayer.PlayerScripts.Music:Destroy()
 game:GetService("Players").LocalPlayer.Character.ForceField:Destroy()
 local v1 = {
