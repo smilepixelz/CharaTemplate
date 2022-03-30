@@ -11,6 +11,7 @@ game.Players.LocalPlayer.Character.Head:WaitForChild("HealthBar").Frame.Health:D
 wait(2)
 game:GetService("Players").LocalPlayer.PlayerScripts.Music:Destroy()
 game:GetService("Players").LocalPlayer.Character.ForceField:Destroy()
+game.Players.LocalPlayer.Character.LockOn:Destroy() -- anti lock lmfao ahahah
 local v1 = {
     [1] = getrenv()._G.Pass, 
     [2] = "Damage", 
