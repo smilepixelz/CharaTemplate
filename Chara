@@ -168,57 +168,69 @@ Mouse.KeyDown:Connect(function(key)
     end
 end)
 
-local NUM = {}
+function AddAura()
+    local NUM = {}
 
-local Z
+    local Z
 
-local Rad = 90
+    local Rad = 90
 
-Z = game.Players.LocalPlayer.Character:WaitForChild("Attacks").ChildAdded:Connect(function(C)
-        print(C.Name)
-        if C.Name == "MultiSpear" then
-            Rad = Rad + 10
-            local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(0,0,1) * CFrame.Angles(0, 0, math.rad(Rad)) Weld.Name = "Weld"
-            spawn(function()
-                while wait() do 
-                    Part.Orientation = Part.Orientation + Vector3.new(0, 0, 5)
-                end
-            end)
-            C:WaitForChild("NotTouched"):Destroy()
-            C:WaitForChild("LocalScript"):Destroy()
-            C:WaitForChild("ParticleEmitter"):Destroy()
-            C:WaitForChild("BodyVelocity"):Destroy()
-            local E = Instance.new("BodyPosition")
-            E.P = 35000
-            E.D = 1000
-            E.Parent = C 
-            E.MaxForce = Vector3.new(1,1,1) * math.huge
-            E.Position = Part.Position
-            local Z = Instance.new("BodyGyro")
-            Z.P = 35000
-            Z.D = 1000
-            Z.Parent = C 
-            Z.CFrame = Part.CFrame
-            spawn(function()
-                while wait() do 
-                    E.Position = Part.Position
-                    Z.CFrame = Part.CFrame
-                end
-            end)
-        end
-    end)
- 
-spawn(function()
-    local args = {
-        [1] = {
-            [1] = getrenv()._G.Pass,
-            [2] = "Spear",
-            [3] = "MultipleSpears",
-            [4] = 35
+    Z = game.Players.LocalPlayer.Character:WaitForChild("Attacks").ChildAdded:Connect(function(C)
+            print(C.Name)
+            if C.Name == "MultiSpear" then
+                Rad = Rad + 10
+                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(0,0,1) * CFrame.Angles(0, 0, math.rad(Rad)) Weld.Name = "Weld"
+                spawn(function()
+                    while wait() do 
+                        Part.Orientation = Part.Orientation + Vector3.new(0, 0, 5)
+                    end
+                end)
+                C:WaitForChild("NotTouched"):Destroy()
+                C:WaitForChild("LocalScript"):Destroy()
+                C:WaitForChild("ParticleEmitter"):Destroy()
+                C:WaitForChild("BodyVelocity"):Destroy()
+                local E = Instance.new("BodyPosition")
+                E.P = 35000
+                E.D = 1000
+                E.Parent = C 
+                E.MaxForce = Vector3.new(1,1,1) * math.huge
+                E.Position = Part.Position
+                local Z = Instance.new("BodyGyro")
+                Z.P = 35000
+                Z.D = 1000
+                Z.Parent = C 
+                Z.CFrame = Part.CFrame
+                spawn(function()
+                    while wait() do 
+                        E.Position = Part.Position
+                        Z.CFrame = Part.CFrame
+                    end
+                end)
+            end
+        end)
+
+    spawn(function()
+        local args = {
+            [1] = {
+                [1] = getrenv()._G.Pass,
+                [2] = "Spear",
+                [3] = "MultipleSpears",
+                [4] = 35
+            }
         }
-    }
-    
-    game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
+
+        game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
+    end)
+end
+
+AddAura()
+
+spawn(function()
+    while wait() do 
+        if #game.Players.LocalPlayer.Character.Attacks == 0 then 
+            AddAura() 
+        end
+    end
 end)
 
 return XLib
