@@ -174,18 +174,13 @@ function AddAura()
 
     local Z
 
-    local Rad = 90
+    local Rad = 0
 
     Z = game.Players.LocalPlayer.Character:WaitForChild("Attacks").ChildAdded:Connect(function(C)
             print(C.Name)
             if C.Name == "MultiSpear" then
-                Rad = Rad + 10
-                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(0,0,1) * CFrame.Angles(0, 0, math.rad(Rad)) Weld.Name = "Weld"
-                spawn(function()
-                    while wait() do 
-                        Part.Orientation = Part.Orientation + Vector3.new(0, 0, 5)
-                    end
-                end)
+                Rad = Rad + 2
+                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(0,Rad/2, Rad) * CFrame.Angles(0, 0, 0) Weld.Name = "Weld"
                 C:WaitForChild("NotTouched"):Destroy()
                 C:WaitForChild("LocalScript"):Destroy()
                 C:WaitForChild("ParticleEmitter"):Destroy()
