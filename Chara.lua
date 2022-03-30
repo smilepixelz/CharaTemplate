@@ -180,7 +180,7 @@ function AddAura()
             print(C.Name)
             if C.Name == "MultiSpear" then
                 Rad = Rad + 2
-                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(0,Rad/2, Rad) * CFrame.Angles(0, 0, 0) Weld.Name = "Weld"
+                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(Rad/2,Rad/2, Rad) * CFrame.lookAt(Part.Position,  game.Players.LocalPlayer.Character.HumanoidRootPart.Position) Weld.Name = "Weld"
                 C:WaitForChild("NotTouched"):Destroy()
                 C:WaitForChild("LocalScript"):Destroy()
                 C:WaitForChild("ParticleEmitter"):Destroy()
@@ -195,11 +195,11 @@ function AddAura()
                 Z.P = 35000
                 Z.D = 1000
                 Z.Parent = C 
-                Z.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                Z.CFrame = Part.CFrame
                 spawn(function()
                     while wait() do 
                         E.Position = Part.Position
-                        Z.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        Z.CFrame = Part.CFrame
                     end
                 end)
             end
