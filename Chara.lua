@@ -219,16 +219,16 @@ function AddAura()
                 E.D = 1000
                 E.Parent = C 
                 E.MaxForce = Vector3.new(1,1,1) * math.huge
-                E.Position = game.Players.LocalPlayer.Character.Spear.Position
+                E.Position = game.Players.LocalPlayer.Character["Right Arm"].Position
                 local Z = Instance.new("BodyGyro")
                 Z.P = 35000
                 Z.D = 1000
                 Z.Parent = C 
-                Z.CFrame = game.Players.LocalPlayer.Character.Spear.CFrame
+                Z.CFrame = CFrame.Angles(0, math.rad(90), 0)
                 spawn(function()
                     while wait() do 
-                        E.Position = game.Players.LocalPlayer.Character.Spear.Position
-                        Z.CFrame = game.Players.LocalPlayer.Character.Spear.CFrame
+                        E.Position = game.Players.LocalPlayer.Character["Right Arm"].Position
+                        Z.CFrame = CFrame.Angles(0, math.rad(90), 0)
                     end
                 end)
             end
