@@ -207,6 +207,30 @@ function AddAura()
                         Z.CFrame = Part.CFrame
                     end
                 end)
+            elseif C.Name == "HugeSpear" then 
+                C:WaitForChild("NotTouched"):Destroy()
+                C:WaitForChild("LocalScript"):Destroy()
+                C:WaitForChild("ParticleEmitter"):Destroy()
+                C:WaitForChild("BodyVelocity"):Destroy()
+                local SpearC = game.Players.LocalPlayer.Character.Spear.CFrame
+                local SpearP = game.Players.LocalPlayer.Character.Spear.Position
+                local E = Instance.new("BodyPosition")
+                E.P = 35000
+                E.D = 1000-(Rad/10)
+                E.Parent = C 
+                E.MaxForce = Vector3.new(1,1,1) * math.huge
+                E.Position = SpearP
+                local Z = Instance.new("BodyGyro")
+                Z.P = 35000
+                Z.D = 1000
+                Z.Parent = C 
+                Z.CFrame = SpearC
+                spawn(function()
+                    while wait() do 
+                        E.Position = SpearP
+                        Z.CFrame = SpearC
+                    end
+                end)
             end
         end)
 
@@ -233,5 +257,7 @@ spawn(function()
         end
     end
 end)
+
+game.Players.LocalPlayer.Character.Spear:Destroy()
 
 return XLib
