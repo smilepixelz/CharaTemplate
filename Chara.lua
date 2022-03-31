@@ -216,7 +216,7 @@ function AddAura()
                 local SpearP = game.Players.LocalPlayer.Character.Spear.Position
                 local E = Instance.new("BodyPosition")
                 E.P = 35000
-                E.D = 1000-(Rad/10)
+                E.D = 1000
                 E.Parent = C 
                 E.MaxForce = Vector3.new(1,1,1) * math.huge
                 E.Position = SpearP
@@ -245,6 +245,16 @@ function AddAura()
         }
 
         game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
+        wait(1)
+        local args = {
+            [1] = {
+                [1] = getrenv()._G.Pass,
+                [2] = "Spear",
+                [3] = "Special",
+            },
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
     end)
 end
 
@@ -257,23 +267,5 @@ spawn(function()
         end
     end
 end)
-
-spawn(function()
-    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
-
-    local args = {
-        [1] = {
-            [1] = getrenv()._G.Pass,
-            [2] = "Spear",
-            [3] = "Special",
-        },
-    }
-
-    game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
-end)
-
-wait(2)
-
-game.Players.LocalPlayer.Character.Spear:Destroy()
 
 return XLib
