@@ -180,7 +180,7 @@ function AddAura()
     
     Z = game.Players.LocalPlayer.Character:WaitForChild("Attacks").ChildAdded:Connect(function(C)
             print(C.Name)
-            if C.Name == "MultiSpear" then
+            if C.Name == "MultiSpear" or C.Name == "HugeSpear" then
                 Rad = Rad + 2
                 Inc = Inc + 0.1 
                 Rad2 = Rad2 + Inc
@@ -193,31 +193,6 @@ function AddAura()
                 local E = Instance.new("BodyPosition")
                 E.P = 35000
                 E.D = 1000-(Rad/10)
-                E.Parent = C 
-                E.MaxForce = Vector3.new(1,1,1) * math.huge
-                E.Position = Part.Position
-                local Z = Instance.new("BodyGyro")
-                Z.P = 35000
-                Z.D = 1000
-                Z.Parent = C 
-                Z.CFrame = Part.CFrame
-                spawn(function()
-                    while wait() do 
-                        E.Position = Part.Position
-                        Z.CFrame = Part.CFrame
-                    end
-                end)
-            elseif C.Name == "HugeSpear" then 
-                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Massless = true Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = game.Players.LocalPlayer.Character.Spear.CFrame Weld.Name = "Weld"
-                C:WaitForChild("NotTouched"):Destroy()
-                C:WaitForChild("LocalScript"):Destroy()
-                C:WaitForChild("ParticleEmitter"):Destroy()
-                C:WaitForChild("BodyVelocity"):Destroy()
-                local SpearC = game.Players.LocalPlayer.Character.Spear.CFrame
-                local SpearP = game.Players.LocalPlayer.Character.Spear.Position
-                local E = Instance.new("BodyPosition")
-                E.P = 35000
-                E.D = 1000
                 E.Parent = C 
                 E.MaxForce = Vector3.new(1,1,1) * math.huge
                 E.Position = Part.Position
