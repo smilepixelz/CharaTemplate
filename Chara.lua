@@ -208,6 +208,7 @@ function AddAura()
                     end
                 end)
             elseif C.Name == "HugeSpear" then 
+                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Massless = true Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = game.Players.LocalPlayer.Character.Spear.CFrame Weld.Name = "Weld"
                 C:WaitForChild("NotTouched"):Destroy()
                 C:WaitForChild("LocalScript"):Destroy()
                 C:WaitForChild("ParticleEmitter"):Destroy()
@@ -219,16 +220,16 @@ function AddAura()
                 E.D = 1000
                 E.Parent = C 
                 E.MaxForce = Vector3.new(1,1,1) * math.huge
-                E.Position = game.Players.LocalPlayer.Character["Right Arm"].Position
+                E.Position = Part.Position
                 local Z = Instance.new("BodyGyro")
                 Z.P = 35000
                 Z.D = 1000
                 Z.Parent = C 
-                Z.CFrame = CFrame.Angles(0, math.rad(90), 0)
+                Z.CFrame = Part.CFrame
                 spawn(function()
                     while wait() do 
-                        E.Position = game.Players.LocalPlayer.Character["Right Arm"].Position
-                        Z.CFrame = CFrame.Angles(0, math.rad(90), 0)
+                        E.Position = Part.Position
+                        Z.CFrame = Part.CFrame
                     end
                 end)
             end
@@ -267,5 +268,7 @@ spawn(function()
         end
     end
 end)
+
+game.Players.LocalPlayer.Character.Spear:Destroy()
 
 return XLib
