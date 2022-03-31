@@ -244,8 +244,4 @@ spawn(function()
     end
 end)
 
-wait(4)
-
-game.Players.LocalPlayer.Character.Spear:Destroy()
-
 return XLib
