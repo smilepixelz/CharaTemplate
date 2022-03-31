@@ -260,4 +260,18 @@ end)
 
 game.Players.LocalPlayer.Character.Spear:Destroy()
 
+spawn(function()
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+
+    local args = {
+        [1] = {
+            [1] = getrenv()._G.Pass,
+            [2] = "Spear",
+            [3] = "Special",
+        },
+    }
+
+    game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
+end)
+
 return XLib
