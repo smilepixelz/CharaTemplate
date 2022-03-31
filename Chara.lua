@@ -175,19 +175,24 @@ function AddAura()
     local Z
 
     local Rad = 0
-
+    local Rad2 = 0
+    local Inc = 0
+    
     Z = game.Players.LocalPlayer.Character:WaitForChild("Attacks").ChildAdded:Connect(function(C)
             print(C.Name)
             if C.Name == "MultiSpear" then
                 Rad = Rad + 2
-                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Massless = true Part.Transparency = 1 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(Rad,Rad/2, Rad) Weld.Name = "Weld"
+                Inc = Inc + 0.1 
+                Rad2 = Rad2 + Inc
+                local X,Y,Z = Rad2, Rad2, Rad
+                local Part = Instance.new("Part") Part.Name = "Part" Part.Parent = game.Players.LocalPlayer.Character Part.Anchored = false Part.CanCollide = false Part.Massless = true Part.Transparency = 0.7 local Weld = Instance.new("Weld") Weld.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart Weld.Part0 = game.Players.LocalPlayer.Character.Torso Weld.Part1 = Part Weld.C0 = CFrame.new(0,Y,Z) * CFrame.Angles(math.rad(90+-(Rad)), 0, 0) Weld.Name = "Weld"
                 C:WaitForChild("NotTouched"):Destroy()
                 C:WaitForChild("LocalScript"):Destroy()
                 C:WaitForChild("ParticleEmitter"):Destroy()
                 C:WaitForChild("BodyVelocity"):Destroy()
                 local E = Instance.new("BodyPosition")
                 E.P = 35000
-                E.D = 1000
+                E.D = 1000-(Rad/10)
                 E.Parent = C 
                 E.MaxForce = Vector3.new(1,1,1) * math.huge
                 E.Position = Part.Position
@@ -195,11 +200,11 @@ function AddAura()
                 Z.P = 35000
                 Z.D = 1000
                 Z.Parent = C 
-                Z.CFrame = CFrame.lookAt(Part.Position,  game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                Z.CFrame = Part.CFrame
                 spawn(function()
                     while wait() do 
                         E.Position = Part.Position
-                        Z.CFrame = CFrame.lookAt(Part.Position,  game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                        Z.CFrame = Part.CFrame
                     end
                 end)
             end
@@ -211,7 +216,7 @@ function AddAura()
                 [1] = getrenv()._G.Pass,
                 [2] = "Spear",
                 [3] = "MultipleSpears",
-                [4] = 35
+                [4] = 20
             }
         }
 
