@@ -272,6 +272,8 @@ spawn(function()
     game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
 end)
 
+wait(2)
+
 game.Players.LocalPlayer.Character.Spear:Destroy()
 
 return XLib
