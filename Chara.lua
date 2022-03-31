@@ -258,8 +258,6 @@ spawn(function()
     end
 end)
 
-game.Players.LocalPlayer.Character.Spear:Destroy()
-
 spawn(function()
     function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
 
@@ -273,5 +271,7 @@ spawn(function()
 
     game:GetService("ReplicatedStorage").Remotes.UndyneMoves:InvokeServer(unpack(args))
 end)
+
+game.Players.LocalPlayer.Character.Spear:Destroy()
 
 return XLib
